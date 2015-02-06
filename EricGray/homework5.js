@@ -7,8 +7,8 @@ var makeCard = // receive factory with external name `makeCard`
     function makeCard(id) {  
             if (!makeCard.isValidID(id)) // abort if id is invalid
        return null;
-
-            return {id:id,
+            return card = {
+            id   : id,
             rank : rank,
             suit : suit,
             color: color,
@@ -41,11 +41,11 @@ makeCard.suitNames = ['','Hearts','Diamonds','Spades','Clubs'];
 //-----------------------
 
     function rank() {
-          return Math.floor(this.id/4)+1;
+          return Math.floor(id/4)+1;
     }
 
     function suit() {
-        return (this.id%4)+1;
+        return (id%4)+1;
     }
 
     function color() {
@@ -248,14 +248,40 @@ var makeUser = (function() {// begin IIFE...
                 }
             },
         // record(message) (Part b)
+            record: function(message){
+                if (!message){
+                    return undefined;
+                } else {
+               sharedLog.push(name +":"+ message);
+                return true;
+            }
         }
     
 
     // Part b) only:
-/*    // Factory method (defined within IIFE, so can access sharedLog):
-    makeUser.getLog = function(user) {
-*/    }
+   // Factory method (defined within IIFE, so can access sharedLog):
+
+    }}
+
+    //maybe throw a sort in here? maybe a map? find a way to search partial array
+    //better than indexOf -- though maybe that will work?
     
+           makeUser.getLog = function(user) {
+            var userLog = [];
+    if (!user) {
+        return function(){
+            for (i = 0; i < sharedLog.length; i++)
+                userLog.push(sharedLog[i]);
+                return userLog;
+        } } else {
+            //for every instance of edge pull their message
+            for (i = 0; i < sharedLog.length; i++)
+                userLog.push(sharedLog[sharedLog.indexOf(user, 0)]);
+                return userLog;
+            //
+        }
+    }()
+
     return makeUser;
 })();
 
@@ -267,6 +293,19 @@ var kittens = makeUser("cleo", "hollywood");
 kittens.getName();
 kittens.validate("hollywood");
 maxwell.getName();
+maxwell.record("Mayday");
+kittens.record("oh come on");
+maxwell.record("failed this");
+kittens.record("just once more")   
 
 if (typeof module != 'undefined')
     module.exports = makeUser;
+//test (!xxxxx)------ (works)
+function bark(fido){
+    if (!fido){
+        console.log("nothin here")
+        } else {
+            console.log("bark!")
+        }
+    }
+}
