@@ -2,7 +2,8 @@
 //  which have access to private variables:
 var makeDeque = 
 	(function () { //begin IIFE
-function makeDeque(values) {
+
+	function makeDeque(values) {
 
 	// These vars are private, local to scope of makeDeque,
 	//  only accessible to functions defined in makeDeque:
@@ -97,6 +98,5 @@ function makeDeque(values) {
 	};
 
 } //end makeDeque
-})
-
+})(); //end IIFE
 // Part b): Turn this file into an IIFE module!
