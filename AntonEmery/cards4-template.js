@@ -3,24 +3,30 @@ var makeCard = // receive factory with external name `makeCard`
 
     // The factory itself:
     function makeCard(id) {  //makeCard is also IIFE's internal name
-        // If id is invalid (out of range, etc)
+    // //if id is invalid (out of range, etc)
     if(id > 51 || typeof(id) != 'number' || id < 0) {
     return null;
     };
-
-
-    var newCard = {
+      
+      var newCard = {
         id: id
-    };
-    newCard.rank = makeCard.rank;
+        };
+    console.log('yay');
+    }
+    
+    
+    /*newCard.rank = makeCard.rank;
     newCard.suit = makeCard.suit;
     newCard.color = makeCard.color;
     newCard.cardName = makeCard.cardName;
+    */
+    
+    
 
-    };
 
-    return newCard;
-};
+    
+    
+
 
 
 //--------------------------
@@ -34,7 +40,7 @@ var makeCard = // receive factory with external name `makeCard`
     // Examples:
 
     //function isValidID(num) {...}
-    //var rankNames = [...];
+    
 
 //-----------------------
 // Instance Methods:
@@ -110,6 +116,8 @@ var makeCard = // receive factory with external name `makeCard`
   };
 
   makeCard.fullDeck();
+
+  
 
   return makeCard;  //return factory function, product of IIFE's work
 
