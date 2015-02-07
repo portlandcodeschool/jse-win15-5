@@ -11,7 +11,7 @@ var makeCard = // receive factory with external name `makeCard`
       var newCard = {
         id: id
         };
-    console.log('yay');
+    return newCard;
     }
     
     
@@ -22,13 +22,6 @@ var makeCard = // receive factory with external name `makeCard`
     */
     
     
-
-
-    
-    
-
-
-
 //--------------------------
 // Private resources (internal use only)
 //--------------------------
