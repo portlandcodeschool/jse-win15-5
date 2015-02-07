@@ -1,6 +1,7 @@
 // Part a): modify factory to use non-shared (instance-specific) methods
 //  which have access to private variables:
-
+var makeDeque = 
+	(function () { //begin IIFE
 function makeDeque(values) {
 
 	// These vars are private, local to scope of makeDeque,
@@ -85,10 +86,17 @@ function makeDeque(values) {
 	return { //one deque instance...
 			top : top,
 			bottom : bottom,
+			pop : pop,
+			push : push,
+			shift : shift,
+			unshift : unshift,
+			length : length,
+			
+
 			//etc
 	};
 
 } //end makeDeque
-
+})
 
 // Part b): Turn this file into an IIFE module!
