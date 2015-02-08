@@ -84,12 +84,21 @@ var makeDeque = (function() {
 			return array.map(convertValFn);
 		}
 
-		function sort(compareValsFn) {
-			return array.sort(compareValsFn);
+		function sort() {
+			array.sort(function(a,b) {
+				return (a.id - b.id);
+			});
 		}
 
 		function shuffle(shuffleFn) {
-			return array.sort(shuffleFn);
+			var m = array.length, t, i;
+			while (m) {
+				var i = Math.floor(Math.random() * m--);
+
+				t =  array[m];
+				array[m] = array[i];
+				array[i] = t;
+			}
 		}
 		// etc...
 
@@ -120,6 +129,6 @@ var makeDeque = (function() {
 })(); //end makeDeque
 
 var x = [1, 2, 3, 4, 5, 6, 7];
-//var deck = makeDeque(makeCard.fullSet);
-var deck = makeDeque(x);
+var deck = makeDeque(makeCard.fullSet);
+//var deck = makeDeque(x);
 // Part b): Turn this file into an IIFE module!
