@@ -9,33 +9,25 @@ var sharedLog = [];  //private; accessible only from functions defined within II
 			// Return a user object with three methods:
 			var user = {
 				// getName()
-				username : function(name){  //setters
-					return name;
-				},
-				// set password
-				password : function(passwd) { //setters
-					return passwd;
-				},
-				//getters
+				name : name,
+				passwd : passwd,
 				getName : function() {
-					return name;
+					return this.name;
 				},
-				getPasswd : function() {
-					return password;
-				}
-
-
 				//validate string
-				// validate : function(str) {
-				// (password === str ? true : false);
-				// }
+				validate : function(str) {
+					return (str === this.passwd);
+				}
+				
+			}
+			return user;
+		};
+
+				
 
 		/*	// record(message) (Part b)
 				var publicpassword = password;  */
-			}
-			return user.username();
-
-		};
+			
 
 
 

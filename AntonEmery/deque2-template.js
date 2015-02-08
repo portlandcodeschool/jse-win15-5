@@ -4,7 +4,13 @@ var makeDeque =
 	(function () { //begin IIFE
 
 	function makeDeque(values) {
-
+		var closure = {
+			values: function() {
+				return values;
+				}
+				
+		}
+		return closure;
 	// These vars are private, local to scope of makeDeque,
 	//  only accessible to functions defined in makeDeque:
 	var array = values.slice(); //copy values
