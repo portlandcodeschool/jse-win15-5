@@ -7,20 +7,19 @@ var sharedLog = [];  //private; accessible only from functions defined within II
 		function makeUser(name,passwd) {
 
 			// Return a user object with three methods:
-			var user = {
-				// getName()
-				name : name,
-				passwd : passwd,
-				getName : function() {
-					return this.name;
-				},
-				//validate string
-				validate : function(str) {
-					return (str === this.passwd);
+				var user = {
+					name : name,
+					passwd : passwd,
+					getName : function() {
+						return name;
+					},
+					validate : function(str) {
+						return(passwd === str);
+					}
 				}
-				
-			}
-			return user;
+				return user;
+		
+			
 		};
 
 				
