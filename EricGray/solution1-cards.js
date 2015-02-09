@@ -57,7 +57,7 @@ function renderImage(cell){
 function renderText(cell){
         var cardTitleSpan = document.createElement('span');
         cardTitleSpan.id = 'card';
-        cardTitleSpan.innerHTML = this.shortName();
+        cardTitleSpan.innerHTML = this.shortName().fontcolor(this.color());
         cell.appendChild(cardTitleSpan);
 }
 
