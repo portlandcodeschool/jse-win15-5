@@ -76,8 +76,8 @@ var makeCard = // receive factory with external name `makeCard`
 
 })(); //end IIFE definition and run it now!
 
-factory = makeCard;
 card1 = makeCard(1);
+
 
 // Export as node-style module:
 //if (typeof module != 'undefined')
