@@ -22,13 +22,14 @@ function renderCardImage(item,container) {
 function renderStr(string,container) {
 	// You could write a new function here,
 	//  or somehow reuse renderCardText()
-
+	    var elem = document.getElementById(container);
+        elem.innerHTML += string;
 }
 
 function drawStuff() {
 	deckOfCards.render('card-names', renderCardText);
 	deckOfCards.render('card-images', renderCardImage);
-	//deckOfPeople.render('people-names', renderName);
+	deckOfPeople.render('people-names', renderStr);
 }
 
 

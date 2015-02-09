@@ -113,14 +113,21 @@ var makeDeque = (function() {
 			while (elem.firstChild) {
 				elem.removeChild(elem.firstChild);
 			}
-
-			for (var i = 0; i < array.length; i++) {
-				var div = document.createElement("div");
-				div.setAttribute("id", container +array[i].id);
-				elem.appendChild(div);
-				renderItemFn(array[i], container);
+			if (container === 'people-names'){
+				for (var i = 0; i < array.length; i++) {
+					var div = document.createElement("div");
+					div.setAttribute("id", container + i);
+					elem.appendChild(div);
+					renderItemFn(array[i], container + i);
+				}
+			} else {
+				for (var i = 0; i < array.length; i++) {
+					var div = document.createElement("div");
+					div.setAttribute("id", container + array[i].id);
+					elem.appendChild(div);
+					renderItemFn(array[i], container);
+				}
 			}
-
 		}
 
 		return { //one deque instance...
