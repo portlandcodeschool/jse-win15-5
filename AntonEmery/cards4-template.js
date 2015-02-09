@@ -15,11 +15,12 @@ var makeCard = // receive factory with external name `makeCard`
     }
     
     
-    /*newCard.rank = makeCard.rank;
+    newCard.rank = makeCard.rank;
     newCard.suit = makeCard.suit;
     newCard.color = makeCard.color;
     newCard.cardName = makeCard.cardName;
-    */
+    newCard.renderText = makeCard.renderText;
+    
     
     
 //--------------------------
@@ -84,7 +85,9 @@ var makeCard = // receive factory with external name `makeCard`
     //}
     }
 
-
+    function renderText(cell) {
+      cell.innerHTML += this.cardName();
+    }
 
 
 //-----------------------

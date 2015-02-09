@@ -36,6 +36,8 @@ var syslog = '';  //private; accessible only from functions defined within IIFE
 			
 })(); //end IIFE
 
+//entire thing wrapped in an IIFE. call it by var anton = makeUser('namehere', 'password here');
+
 
 if (typeof module != 'undefined')
 	module.exports = makeUser;
