@@ -103,7 +103,7 @@ var makeCard = // receive factory with external name `makeCard`
     }
 
     makeCard.renderImage = function(cell) {
-      cell.innerHTML = '<img src="' + cell.innerHTML + 'images/' + this.shortCardName() + '">';
+      cell.innerHTML = cell.innerHTML + '<img src="' + 'images/' + this.shortCardName() + '">';
       }
 
 
