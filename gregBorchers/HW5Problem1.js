@@ -2,6 +2,7 @@ var makeCard = // receive factory with external name `makeCard`
     (function() { //begin IIFE...
 
         // The factory itself:
+        //________________________________________________________________________ makeCard
         function makeCard(id) { //makeCard is also IIFE's internal name
             // set instance properties here
             makeCard.fullSet = [];
@@ -20,16 +21,12 @@ var makeCard = // receive factory with external name `makeCard`
                 return null; // bad ID
             }
         };
-        // and return instance...
-
+       
 
         //--------------------------
         // Private resources (internal use only)
         //--------------------------
-
-        // Examples:
-
-        //function isValidID(num) {...}
+        //________________________________________________________________________ isValidID
         makeCard.isValidID = function(id) {
             // validate inputs
             if (!((typeof id === 'number') && (id % 1 === 0) // is integer
@@ -41,25 +38,27 @@ var makeCard = // receive factory with external name `makeCard`
                 return true;
             }
         };
+        
 
+        //________________________________________________________________________ makeFullSet
         makeCard.makeFullSet = function(cardSet) {
             for (var i = 0; i < 52; i++) {
                 cardSet[i] = makeCard(i);
             }
             makeCard.printFullSet(cardSet);
         };
+
+        //________________________________________________________________________ printFullSet
         makeCard.printFullSet = function(fullSet) {
-            // verbose output
-            // TODO add some error checking
-            //console.log("< ****** --> START of call to makeCard.makeFullSet() **** ");
-            console.log("Here is the deck **** >");
+            
+            console.log("Here is the fullSet **** >");
             for (var i = 0; i < fullSet.length; i++) {
                 console.log("Card ID=" + i + " name() returned: " + fullSet[i].name());
             }
-            //console.log("********* --> END of call to makeCard.makeFullSet() **** >");
         };
 
-        //var rankNames = [...];
+        //________________________________________________________________________ stringVariables
+        // stringVariables
         var suitNames = ["Hearts", "Diamonds", "Spades", "Clubs"];
         var rankNames = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"];
 
@@ -67,15 +66,19 @@ var makeCard = // receive factory with external name `makeCard`
         //-----------------------
         // Instance Methods:
         //-----------------------
-
+        //________________________________________________________________________ rank
         makeCard.rank = function() { // --> 1..13, NaN
             return Math.trunc(this.id / 4) + 1;
         };
+        
+        //________________________________________________________________________ suit
         makeCard.suit = function() { // --> 1..4, NaN
             return (this.id % 4) + 1;
         };
+        
+        //________________________________________________________________________ color
         makeCard.color = function() { // -->"red,"black",NaN
-            var cardColor = "";
+            var cardColor = NaN;
             if ((this.suit(this.id) === 0) || (this.suit(this.id) === 1)) {
                 cardColor = "red";
             } else {
@@ -83,7 +86,9 @@ var makeCard = // receive factory with external name `makeCard`
             };
             return cardColor;
         };
-        makeCard.getCardName = function() { //--> string, NaN
+        
+        //________________________________________________________________________ getCardName
+        makeCard.getCardName = function() { 
             var cardName = "";
             cardName = rankNames[this.rank(this.id) - 1] + " of " + suitNames[this.suit(this.id) - 1];
             return cardName;
@@ -94,10 +99,9 @@ var makeCard = // receive factory with external name `makeCard`
         //-----------------------
         // Factory Methods/Data:
         //-----------------------
+        //________________________________________________________________________ isCard
         makeCard.isCard = function(cardObj) {
-            // TODO look for more authoritative methods that would be a higher bar to validate (i.e. security standards)
-            // However, a simple "quacks like a duck==is duck-ish" test will work, so just enumarate the methods and validate the id.
-
+            
             if (typeof cardObj === 'undefined') {
                 return false;
             } // basic Garbage-in test
@@ -117,14 +121,13 @@ var makeCard = // receive factory with external name `makeCard`
         };
 
 
-
-
         // full set of cards (per factory)
+        //________________________________________________________________________ fullSet
         makeCard.fullSet = []; //<-- fill me
         makeCard.makeFullSet(makeCard.fullSet);
 
         return makeCard; //return factory function, product of IIFE's work
-
+   //________________________________________________________________________ IIFE --> END     
     })(); //end IIFE definition and run it now!
 
 console.log(makeCard);
@@ -134,26 +137,20 @@ console.log(makeCard);
 if (typeof module != 'undefined')
     module.exports = makeCard;
 
-
-//----------------------
+//________________________________________________________________________ TESTING
 // Simple Testing suite
 // Supplement as needed!
 function assert(claim, message) {
     if (!claim) console.error(message);
 }
-// create a factory
 
 // card instances needed for assertions:
 console.log("\n-START------ card instances needed for assertions");
-
 var card0 = makeCard(0);
 var card3 = makeCard(3);
 var card5 = makeCard(5);
 var card51 = makeCard(51);
-// Test instance methods:
-
 console.log("-END-------- \n");
-
 
 console.log("\n-START-------- starting rank, suit, color, name tests");
 assert(card0.rank() === 1, "Test 1 failed");
@@ -167,6 +164,7 @@ assert(card3.color() === 'black', "Test 11 failed");
 assert(card5.name() === 'Two of Diamonds', "Test 12 failed");
 assert(card51.name() === 'King of Clubs', "Test 13 failed");
 console.log("-END-------- \n");
+
 console.log("\n-START-------- starting Test makeCard.isCard & makeCard");
 // Test makeCard.isCard:
 assert(makeCard.isCard(card0), "Test 21 failed");
@@ -180,6 +178,7 @@ assert(!makeCard(-1), "Test 28 failed");
 assert(!makeCard(false), "Test 30 failed");
 assert(!makeCard(true), "Test 31 failed");
 console.log("-END-------- \n");
+
 console.log("\n-START-------- starting Test fullset factory array");
 // // Test fullSet array:
 // cardSet must be made externally, not like in HW4 where we could get the internal fullDeck out. (it won't come to play anymore!)
@@ -195,4 +194,3 @@ assert(card0.rank === card3.rank, "Test 51 failed");
 assert(card0.suit === card3.suit, "Test 52 failed");
 assert(card0.name === card3.name, "Test 53 failed");
 console.log("-END-------- \n");
-// //etc...
