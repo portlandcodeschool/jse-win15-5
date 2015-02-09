@@ -11,8 +11,7 @@ var makeCard = // receive factory with external name `makeCard`
       var newCard = {
         id: id
         };
-    return newCard;
-    }
+    
     
     
     newCard.rank = makeCard.rank;
@@ -20,8 +19,13 @@ var makeCard = // receive factory with external name `makeCard`
     newCard.color = makeCard.color;
     newCard.cardName = makeCard.cardName;
     newCard.renderText = makeCard.renderText;
+    newCard.renderImage = makeCard.renderImage;
+    newCard.shortCardName = makeCard.shortCardName;
+    newCard.renderImage = makeCard.renderImage;
     
-    
+      return newCard;
+  
+    }
     
 //--------------------------
 // Private resources (internal use only)
@@ -29,8 +33,10 @@ var makeCard = // receive factory with external name `makeCard`
     var cardRank = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 
                     'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King'];
 
-    var cardSuit = ['Hearts', 'Diamonds', 'Spades', 'Clubs'];
+    var cardSuit = ['hearts', 'diamonds', 'spades', 'clubs'];
 
+    var cardRankNum = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', 
+                      '10', 'jack', 'queen', 'king'];
     // Examples:
 
     //function isValidID(num) {...}
@@ -40,7 +46,7 @@ var makeCard = // receive factory with external name `makeCard`
 // Instance Methods:
 //-----------------------
 
-    function rank() {
+    makeCard.rank = function() {
       if (this.id > 51 || typeof(this.id) == 'string' || this.id < 0 || this.id%1 !== 0 || this.id == undefined) {
       return NaN;
       } else {
@@ -49,7 +55,7 @@ var makeCard = // receive factory with external name `makeCard`
         }
     }
 
-    function suit() {
+    makeCard.suit = function() {
        if (this.id > 51 || typeof(this.id) == 'boolean' || this.id < 0 || this.id%1 !== 0) {
         return NaN;
     } else {
@@ -58,7 +64,7 @@ var makeCard = // receive factory with external name `makeCard`
       } 
     }
 
-    function color() {
+    makeCard.color = function() {
       if (typeof(this.id) == 'string' || typeof(this.id) == 'boolean') {
     return NaN;
   } else {
@@ -71,7 +77,7 @@ var makeCard = // receive factory with external name `makeCard`
   } return cardColor;
     }
 
-    function cardName() {
+    makeCard.cardName = function() {
       // This method can't have the key 'name' within the makeCard function,
     // but instance objects can store a reference to it called 'name'
 
@@ -85,9 +91,20 @@ var makeCard = // receive factory with external name `makeCard`
     //}
     }
 
-    function renderText(cell) {
-      cell.innerHTML += this.cardName();
+    makeCard.shortCardName = function() {
+      var cardName = this.rank(this.id);
+      var cSuit = this.suit(this.id);
+      var fullName = (cardRankNum[cardName - 1] + '_' + 'of' + '_' + cardSuit[cSuit - 1]+'.svg');
+      return fullName;
     }
+
+    makeCard.renderText = function(cell) {
+      cell.innerHTML += this.shortCardName();
+    }
+
+    makeCard.renderImage = function(cell) {
+      cell.innerHTML = '<img src="' + cell.innerHTML + 'images/' + this.shortCardName() + '">';
+      }
 
 
 //-----------------------
