@@ -93,8 +93,7 @@ var makeCard = // receive factory with external name `makeCard`
             cardName = rankNames[this.rank(this.id) - 1] + " of " + suitNames[this.suit(this.id) - 1];
             return cardName;
         };
-        //etc...
-
+       
 
         //-----------------------
         // Factory Methods/Data:
@@ -181,7 +180,7 @@ console.log("-END-------- \n");
 
 console.log("\n-START-------- starting Test fullset factory array");
 // // Test fullSet array:
-// cardSet must be made externally, not like in HW4 where we could get the internal fullDeck out. (it won't come to play anymore!)
+// cardSet must be made externally, not like in HW4 where we could get the internal fullDeck out. (it won't come out to play anymore!)
 var cardSet = [];
 makeCard.makeFullSet(cardSet);
 assert(cardSet.length === 52, "Test 41 failed");
