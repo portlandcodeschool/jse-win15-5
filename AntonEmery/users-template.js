@@ -1,7 +1,5 @@
 var makeUser = (function() {// begin IIFE...
 
-function factoryMaker() {
-	
 var syslog = '';  //private; accessible only from functions defined within IIFE
 
 
@@ -32,14 +30,10 @@ var syslog = '';  //private; accessible only from functions defined within IIFE
 		return syslog;
 	}
 
-	return makeUser;			
+	return makeUser;	//IIFE has to have a return value		
 
 		
 			
-}
-
-
-
 })(); //end IIFE
 
 
