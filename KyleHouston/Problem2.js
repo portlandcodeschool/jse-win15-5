@@ -107,6 +107,21 @@ var makeDeque = (function() {
 			console.log("Array: " + array);
 		}
 
+		function render(container, renderItemFn) {
+
+			var elem = document.getElementById(container);
+			while (elem.firstChild) {
+				elem.removeChild(elem.firstChild);
+			}
+
+			for (var i = 0; i < array.length; i++) {
+				var div = document.createElement("div");
+				div.setAttribute("id", container +array[i].id);
+				elem.appendChild(div);
+				renderItemFn(array[i], container);
+			}
+
+		}
 
 		return { //one deque instance...
 				length: myLength,
@@ -122,6 +137,7 @@ var makeDeque = (function() {
 				shuffle: shuffle,
 				check: check,
 				readmit: readmit,
+				render: render,
 		};
 	}
 

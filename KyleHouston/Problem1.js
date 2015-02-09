@@ -78,18 +78,33 @@ var makeCard = // receive factory with external name `makeCard`
     };
 
     function renderText(cell) {
-        var elem = document.getElementById(cell);
-        elem.innerHTML = this.name();
+        //---------------------------------------------
+        var elem = document.getElementById(cell + this.id);
+        elem.innerHTML += this.name();
         elem.className = this.color();
+        //---------------------------------------------
+        
+        // var elem = document.querySelector('card-names.';
+        // elem.innerHTML += this.name();
+        // elem.className = this.color();
+
     };
 
     function renderImage(cell) {
+        //---------------------------------------------
         var elem = document.createElement('img');
         elem.className = 'cardImage';
         elem.src = 'images/SVG-cards-1.3/' + cardString[(this.rank(this.id) - 1)] + '_of_' + suitName[(this.suit(this.id) - 1)] + '.svg';
-        console.log(elem.src);
-        var target = document.getElementById(cell);
+        var target = document.getElementById(cell + this.id);
         target.appendChild(elem);
+        //---------------------------------------------
+
+        // var elem = document.createElement('img');
+        // elem.className = 'cardImage';
+        // elem.src = 'images/SVG-cards-1.3/' + cardString[(this.rank(this.id) - 1)] + '_of_' + suitName[(this.suit(this.id) - 1)] + '.svg';
+        // var target = document.querySelector('card-images.' + this.id);
+        // target.appendChild(elem);
+
     };
 
 
