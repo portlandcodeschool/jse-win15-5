@@ -13,6 +13,9 @@ var makeCard = // receive factory with external name `makeCard`
             suit: suit,
             color: color,
             name: cardName,
+            shortName: shortName,
+            renderText: renderText,
+            renderImage: renderImage,
         }
 
         return card;
@@ -27,7 +30,7 @@ var makeCard = // receive factory with external name `makeCard`
 
     //function isValidID(num) {...}
     var cardString = [
-        'Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King' 
+        'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King' 
     ];
 
     var suitName = [
@@ -37,6 +40,9 @@ var makeCard = // receive factory with external name `makeCard`
 //-----------------------
 // Instance Methods:
 //-----------------------
+    function id() {
+        return this.id;
+    }
 
     function rank() {
         var cardRank = Math.ceil(this.id/4);
@@ -67,6 +73,24 @@ var makeCard = // receive factory with external name `makeCard`
         return cardString[(this.rank(this.id) - 1)] + ' of ' + suitName[(this.suit(this.id) - 1)];
     };
 
+    function shortName() {
+        return cardString[(this.rank(this.id) - 1)].charAt(0) + suitName[(this.suit(this.id) - 1)].charAt(0);
+    };
+
+    function renderText(cell) {
+        var elem = document.getElementById(cell);
+        elem.innerHTML = this.name();
+        elem.className = this.color();
+    };
+
+    function renderImage(cell) {
+        var elem = document.createElement('img');
+        elem.className = 'cardImage';
+        elem.src = 'images/SVG-cards-1.3/' + cardString[(this.rank(this.id) - 1)] + '_of_' + suitName[(this.suit(this.id) - 1)] + '.svg';
+        console.log(elem.src);
+        var target = document.getElementById(cell);
+        target.appendChild(elem);
+    };
 
 
 //-----------------------
@@ -119,7 +143,7 @@ assert(card5.suit()===2,  "Test 5 failed");
 assert(card51.suit()===4, "Test 6 failed");
 assert(card0.color()==='red',   "Test 10 failed");
 assert(card3.color()==='black', "Test 11 failed");
-assert(card5.name()==='Two of Diamonds', "Test 12 failed");
+assert(card5.name()==='2 of Diamonds', "Test 12 failed");
 assert(card51.name()==='King of Clubs',  "Test 13 failed");
 
 // Test makeCard.isCard:
