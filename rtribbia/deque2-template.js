@@ -110,6 +110,11 @@ var makeDeque = (function () {
 			array.forEach(function (x) {console.log(x);});
 		}
 
+		function deck() {
+
+			return array;
+		}
+
 		// etc...
 
 
@@ -126,7 +131,8 @@ var makeDeque = (function () {
 				unshift: unshift,
 				arrlength: arrlength,
 				isDiscarded: isDiscarded,
-				print: printArray
+				print: printArray,
+				deck:deck
 
 				//etc
 		};

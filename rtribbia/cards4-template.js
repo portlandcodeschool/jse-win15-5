@@ -11,7 +11,10 @@ var makeCard = // receive factory with external name `makeCard`
                 rank: rank,
                 suit: suit,
                 color: color,
-                cardName: cardName
+                cardName: cardName,
+                shortName: shortName,
+                renderText: renderText,
+                renderImage: renderImage
             }
             return instance;
         }
@@ -46,14 +49,42 @@ var makeCard = // receive factory with external name `makeCard`
     function color() { // -->"red,"black",NaN
         var b = Math.floor(((this.id / 2) % 2));
         return b?'black':'red';
-    };
+    }
 
     function cardName() { //--> string, NaN
         return ranks[this.rank(this.id)] + ' of ' + suites[this.suit(this.id)];
-    };
+    }
+
+    //-----------------
+    //  4a
+    //-----------------
+    function shortName() {
+        var a = ((this.rank() == 1) || (inRange(this.rank(),11,13)))?ranks[this.rank()][0]:this.rank();
+        var b = suites[this.suit()][0];
+        return a+b;
+    }
     //etc...
+    //-----------------
+    //  4b
+    //-----------------
+    function renderText(cell) {
+        document.getElementById(cell).innerHTML = this.cardName() + ' - ' + this.shortName();
+        document.getElementById(cell).className = this.color();
+    }
 
+    function renderImage(cell) {
+        var img = document.createElement('img');
+        var card_rank = (inRange(this.rank(), 2, 10))?this.rank():ranks[this.rank()];
+        var card_name = card_rank + '_of_' + suites[this.suit()];
+        src = 'images/SVG-cards-1.3/' + card_name.toLowerCase() + '.svg';
+        img.src = src;
+        document.body.appendChild(img);
 
+    }
+
+// makeCard.fullSet.forEach(function (x) {  
+//     console.log(x.shortName() + ': ' + x.cardName()); 
+// });
 //-----------------------
 // Factory Methods/Data:
 //-----------------------
