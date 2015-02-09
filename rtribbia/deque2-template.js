@@ -110,6 +110,19 @@ var makeDeque = (function () {
 			array.forEach(function (x) {console.log(x);});
 		}
 
+		function render(container, renderItemFn) {
+			container.innerHTML = '';
+
+			array.forEach(function(x) {
+					var cell = document.createElement('div')
+					cell.className = 'dequeItem';
+					renderItemFn(x, cell));
+					container.appendChild(cell);
+			});
+			
+
+		}
+
 		function deck() {
 
 			return array;
@@ -132,7 +145,8 @@ var makeDeque = (function () {
 				arrlength: arrlength,
 				isDiscarded: isDiscarded,
 				print: printArray,
-				deck:deck
+				deck: deck,
+				render: render
 
 				//etc
 		};
