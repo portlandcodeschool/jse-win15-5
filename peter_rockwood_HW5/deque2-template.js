@@ -12,19 +12,19 @@ var makeDeque = (function(){
 
 		// ---- Internal use only ----
 		function readmit(val) {
-			for(var i = 0; i<deck.length; i++){
+			for(var i = 0; i<deque.length; i++){
 				if(deque[i] === val){
 					console.log('that item is already in the deck')
 					return false
 				}
 			}
-			for(var i = 0; i<deck.length; i++){
-				if(!(this.discardPile[i] === val)){
-					console.log('that item was not part of the original deck')
-					return false
+			for(var i = 0; i<deque.length; i++){
+				if(discardPile[i] === val){
+					return true
 				}
 			}
-			return true
+			console.log('that item was not part of the original deck')
+			return false
 		}
 
 		function addToDiscardPile(item){
@@ -33,6 +33,10 @@ var makeDeque = (function(){
 		}
 
 		// ---- Public instance methods: -----
+		function viewDiscards(){
+			return discardPile;
+		}
+
 		function size(){
 			return deque.length;
 		}
@@ -89,13 +93,32 @@ var makeDeque = (function(){
 		
 
 		function shuffleFast(){//adapted from Mike Bostock's Fisher-Yates implementation
-			for(var i = this.deque.length-1; i > 0; i--){
+			for(var i = deque.length-1; i > 0; i--){
 				var randElement = Math.floor(Math.random() * i);
 				var hold = deque[i];
 				deque[i] = deque[randElement];
 				deque[randElement] = hold;
 			}
 				return;
+		}
+
+
+		//take in a DOM element, render deque items as child elements according to callback function
+		function render(containerId, renderItemFn){
+			var container = document.getElementById(containerId);
+			while (container.firstChild){ //remove everything in container
+				container.removeChild(container.firstChild);
+			}
+
+			for(var i = 0; i < deque.length; i++){
+				var newCell = document.createElement('div'); //make an element
+				newCell.classList.add('dequeItem'); //give it properties
+				//newCell.classList.add('row');      
+				container.appendChild(newCell); //place it as a child of container
+				renderItemFn(deque[i], newCell); // render via the callback
+			}
+
+
 		}
 
 		return { //one deque instance...
@@ -110,6 +133,8 @@ var makeDeque = (function(){
 				map:     mapper,
 				sort:    sorter,
 				shuffle: shuffleFast,
+				render: render,
+				viewDiscards: viewDiscards,
 			}
 
 				

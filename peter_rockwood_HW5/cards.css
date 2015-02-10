@@ -6,6 +6,13 @@
 	color: black;
 }
 
+/*img {
+	display: inline-block;
+	width: 30px;
+	height: auto;
+}*/
 .cardImage {
-	/* more style props here */
+	display: inline-block;
+	width: 30px;
+	height: auto;
 }

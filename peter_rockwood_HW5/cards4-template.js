@@ -9,6 +9,9 @@ var makeCard = // receive factory with external name `makeCard`
             suit: suit,
             color: color,
             cardName: cardName,
+            shortName: shortName,
+            renderText: renderText,
+            renderImage: renderImage,
         };
     };
 
@@ -32,6 +35,8 @@ var makeCard = // receive factory with external name `makeCard`
     //var rankNames = [...];
     var cardRank = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King'];
     var cardSuit = ['Hearts', 'Diamonds', 'Spades', 'Clubs'];
+    var shortRank = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
+    var shortSuit = ['hearts', 'diamonds', 'spades', 'clubs'];
 
 //-----------------------
 // Instance Methods:
@@ -65,6 +70,34 @@ var makeCard = // receive factory with external name `makeCard`
         return rankName + ' of ' + suitName;
     };
 
+    var shortName = function() { //--> string, NaN
+        var rankName = shortRank[this.rank() -1];
+        var suitName = shortSuit[this.suit() -1];
+
+        return rankName + '_of_' + suitName
+    };
+
+    function renderText(cell){
+        var cardText = document.createElement('p');
+        cardText.innerHTML = this.cardName();
+        cell.appendChild(cardText);
+        if(this.color() === 'red'){
+            cardText.className = ' red';
+        } else {
+            cardText.className = ' black';
+        }
+
+    }
+
+    function renderImage(cell){
+        var cardImg = document.createElement('img');
+        var imgName = this.shortName()
+        var cardLoc = 'images/SVG-cards-1.3/' + this.shortName() + '.svg';
+        //console.log(cardLoc);
+        cardImg.src = cardLoc;
+        cell.appendChild(cardImg);
+    }
+
     //etc...
 
 
@@ -77,7 +110,7 @@ var makeCard = // receive factory with external name `makeCard`
             return false
         }
         for(keys in thing) {
-            if (! (keys in {id:'', rank:'', suit:'', color:'', name:''})){
+            if (! (keys in makeCard(100))){
                 return false
             }
         }
