@@ -121,13 +121,6 @@ var makeDeque = (function () {
 			});
 		}
 
-
-
-		function deck() {
-
-			return array;
-		}
-
 		// etc...
 
 
@@ -145,7 +138,6 @@ var makeDeque = (function () {
 				arrlength: arrlength,
 				isDiscarded: isDiscarded,
 				print: printArray,
-				deck: deck,
 				render: render
 
 				//etc

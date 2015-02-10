@@ -11,10 +11,6 @@ function inRange(n,a,z) { return ((n >= a) && (n <= z));}
 
 
 
-//deckOfCards.deck()[6].renderText('card-names');
-
-
-//deckOfCards.deck()[6].renderImage('card-images');
 
 function renderCardText(item,container) {
 	container.innerHTML = item.cardName() + ' - ' + item.shortName();
