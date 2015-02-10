@@ -111,17 +111,17 @@ var makeDeque = (function () {
 		}
 
 		function render(container, renderItemFn) {
-			container.innerHTML = '';
+			document.getElementById(container).innerHTML = '';
 
 			array.forEach(function(x) {
 					var cell = document.createElement('div')
 					cell.className = 'dequeItem';
-					renderItemFn(x, cell));
-					container.appendChild(cell);
+					renderItemFn(x, cell);
+					document.getElementById(container).appendChild(cell);
 			});
-			
-
 		}
+
+
 
 		function deck() {
 
