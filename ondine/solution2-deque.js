@@ -13,10 +13,10 @@ var makeDeque = (function () {
 
 		// ---- Internal use only ----
 		function readmit(val) {
-			var cardAt = this.absent.indexOf(val); // indexOf is -1, val does not exist
+			var cardAt = absent.indexOf(val); // indexOf is -1, val does not exist
 		    if (cardAt < 0)
 		        return false;
-		    this.absent.splice(cardAt, 1); // start at cardAt, deleteCount = 1 (remove one element)
+		    absent.splice(cardAt, 1); // start at cardAt, deleteCount = 1 (remove one element)
 		        return true;
 		}
 
@@ -27,8 +27,8 @@ var makeDeque = (function () {
 		}    
 
 		function top() {
-			var val = this.array.length-1;
-		    return this.array.length > 0 ? this.array[val] : undefined;
+			var val = array.length-1;
+		    return array.length > 0 ? array[val] : undefined;
 		}
 
 		function bottom() {
@@ -36,27 +36,27 @@ var makeDeque = (function () {
 		}
 
 	    function pop() {
-			var val = this.array.pop();
+			var val = array.pop();
 			if (val !== undefined)
-				this.absent.push(val);
+				absent.push(val);
 			return val;
 	    }
 
 	    function push(val) {
-		    return this.readmit(val) && 
-		        this.array.push(val);
+		    return readmit(val) && 
+		        array.push(val);
 		}
 
 	    function shift() {
-			var val = this.array.shift();
+			var val = array.shift();
 			if (val !== undefined)
-				this.absent.push(val);
+				absent.push(val);
 			return val;
 	    }
 
 	    function unshift(val) {
-		    return this.submit(val) && 
-		        this.array.unshift(val);
+		    return readmit(val) && 
+		        array.unshift(val);
 	    }
 		
 		function cut() {
@@ -100,11 +100,11 @@ var makeDeque = (function () {
 	    	for (var i = 0; i < this.array.length; ++i) {
 	    	     var div = document.createElement('div');
 	    	     div.className = 'dequeItem';
-		    	 container.appendChild(div);
+		    	 container.appendChild(div); // Type error - appendChild is not a function
 		    	 renderItemFn(this.array[i], div);
 		    }
-		    //var elem = getElementById('card-names');
-	    	//elem.innerHTML += "<div>new element</div>";
+		    // var elem = getElementById('card-names');
+	    	// elem.innerHTML += "<div>new element</div>";
 		}
 
 		return { //one deque instance...

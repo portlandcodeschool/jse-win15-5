@@ -1,12 +1,10 @@
-// Homework #5.1 == Cards Module
-// Problem #5.4 - updates
+// Homework #5.1 & 5.4 == Cards Module
 
 // receive factory with external name `makeCard`
 var makeCard = (function () { //begin IIFE...
     // The factory itself:
-    function makeCard(id) {  //makeCard is also IIFE's internal name
-    // set instance properties here
-    //...
+    function makeCard(id) { //makeCard is also IIFE's internal name
+    // set instance properties
     // and return instance...
         if (!isValid(id))
             return null;
@@ -31,8 +29,8 @@ var makeCard = (function () { //begin IIFE...
     }
     var rankName = ["", "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"];
     var suitName = ["", "Hearts", "Diamonds", "Spades", "Clubs"];
-//    var rankAbbr = ["", 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-//    var suitAbbr = ["", 'H', 'D', 'S', 'C'];
+    var rankAbbr = ["", 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+    var suitAbbr = ["", 'H', 'D', 'S', 'C'];
 
     //-----------------------
     // Instance Methods:
@@ -61,7 +59,7 @@ var makeCard = (function () { //begin IIFE...
     function shortNameFn() {
         var rank = this.rank();
         var suit = this.suit();
-        return rank && suit && (rankName[rank].charAt(0) + suitName[suit].charAt(0));
+        return rank && suit && (rankAbbr[rank] + suitAbbr[suit]);
     }
 
     //Problem 5.4b)  
@@ -74,18 +72,15 @@ var makeCard = (function () { //begin IIFE...
     }
 
     // display an image of the card as a new child of cell
-    //draw item (as image) in container...
     // path: images/SVG-cards-1.3/ace_of_spades.svg
-        //document.body.appendChild(img);
-
-
+    // One way to create image name from id.name with a regular expression 
+    // swap of " of " with "_of_", append .svg and convert toLowerCase.
+    
     function renderImageFn(cell) {
-     //   var img = document.createElement('img');
-        var img = document.body.appendChild('img');
-
-        cell.appendChild('img');
-        img.src = ('images/SVG-cards-1.3/ace_of_spades.svg');
-        img.className = ('cardImage');
+        var img = document.createElement('img');
+        img.innerHTML = '<img src = \"images/SVG-cards-1.3/ace_of_spades.svg\">';
+        cell.appendChild(img);
+        img.className = 'cardImage';
     }
 
     //-----------------------

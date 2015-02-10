@@ -5,7 +5,7 @@ var makeUser = (function() {// begin IIFE...
 	var sharedLog = [];  //private; accessible only from functions defined within IIFE
 
     function record(message) {
-        sharedLog += this.getName()+':'+message+'\n';
+        sharedLog += this.getName()+': '+message+'\n';
     }
 	// The factory itself:
 	function factory(username,pwd) {
@@ -22,7 +22,7 @@ var makeUser = (function() {// begin IIFE...
             },
             record: record
             // record: function(message) {
-            //     sharedLog += username+':'+message+'\n';
+            //     sharedLog += username+': '+message+'\n';
             //     return true; 
             //}
 		};

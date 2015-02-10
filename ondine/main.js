@@ -26,8 +26,9 @@ function renderName(string,container) {
 
 function drawStuff() {
 	deckOfCards.render(document.body, renderCardText);
+	// getElementById('card-names')
 	deckOfCards.render('card-names', renderCardText);
-//	deckOfCards.render(document.body, renderCardImage);
+	deckOfCards.render(document.body, renderCardImage);
 	deckOfCards.render('card-images', renderCardImage);
 	deckOfPeople.render('people-names', renderName);
 }
@@ -37,8 +38,10 @@ function drawStuff() {
 window.onload = drawStuff;
 
 
-
+// instances for testing
 var card0 = makeCard(0);
-var card2 = makeCard(2);
+var card2 = makeCard(2); // Ace of Spades
 card0.renderText(document.body);
 card2.renderText(document.body);
+card0.renderImage(document.body);
+card2.renderImage(document.body);
