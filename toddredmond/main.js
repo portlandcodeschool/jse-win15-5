@@ -10,7 +10,7 @@ var deckOfPeople = makeDeque(people);
 
 
 function renderCardText(item,container) {
-	//draw item (as text) in container...
+	document.write(deckOfCards[2])
 }
 
 function renderCardImage(item,container) {
@@ -31,3 +31,4 @@ function drawStuff() {
 
 //wait until everything is loaded before rendering:
 window.onload = drawStuff;
+

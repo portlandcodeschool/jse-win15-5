@@ -47,7 +47,7 @@ _(Hint #2: the private arrays will live in a function scope, not in an object.)_
   + `validate(str)` takes a string and returns true if it matches that user's password.
 
 It should not be possible, however, to modify the username or password once created nor to directly see the password.
-
+n
 Here is a [template](users-template.js) to get you started.
 
 **b)**  Now that we can make user objects, let's assume that our system needs some version of a "system log" that will record messages left by different users. This system log, being shared by all user objects created, will contain all the messages that users have recorded. You will need to modify the factory you made above to be a part of a module that has a private variable that holds the system log.
