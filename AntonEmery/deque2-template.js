@@ -87,16 +87,15 @@ var makeDeque =
 	return val + 2;
 	}
 
-	function render(container, renderItemFn) {
+	function render(container, renderItemFunction) {
 			document.getElementById(container).innerHTML = '';
-
-			array.forEach(function(x) {
-					var cell = document.createElement('div')
-					cell.className = 'dequeItem';
-					renderItemFn(x, cell);
-					document.getElementById(container).appendChild(cell);
-			});
-		}
+			array.forEach(function(x) { 
+				var cell = document.createElement('div');
+				cell.className = 'dequeItem';
+				renderItemFunction(x, cell);
+				document.getElementById(container).appendChild(cell);
+			})
+		};
 
 	return { //one deque instance...
 			top : top,

@@ -32,8 +32,8 @@ function drawStuff() {
 //wait until everything is loaded before rendering:
 window.onload = drawStuff;
 
-function render(container, renderItemFunction) {
-	//get id of element we are going to render in to
+//function render(container, renderItemFunction) {
+	//get id of element we are going to render in to, set it to empty
 	//for each value in the makeDeque array
 		//create a div, set to variable
 		//set the class of the div to dequeItem
@@ -45,4 +45,4 @@ function render(container, renderItemFunction) {
 
 
 
-}
+
