@@ -1,6 +1,6 @@
   
 var deckOfCards = makeDeque(makeCard.fullSet);
-deckOfCards.shuffle();//keeps it interesting
+//deckOfCards.shuffle();//keeps it interesting
 
 var people = [
 	'Anton','Brigitta','Danniel','Eric','Greg','Ian',
@@ -10,11 +10,11 @@ var deckOfPeople = makeDeque(people);
 
 
 function renderCardText(item,container) {
-	//draw item (as text) in container...
+	container.innerHTML += item.cardName();
 }
 
 function renderCardImage(item,container) {
-	//draw item (as image) in container...
+	container.innerHTML = container.innerHTML + '<img src="' + 'images/' + item.shortCardName() + '">';
 }
 
 function renderStr(string,container) {
@@ -31,3 +31,18 @@ function drawStuff() {
 
 //wait until everything is loaded before rendering:
 window.onload = drawStuff;
+
+function render(container, renderItemFunction) {
+	//get id of element we are going to render in to
+	//for each value in the makeDeque array
+		//create a div, set to variable
+		//set the class of the div to dequeItem
+		//function. for each value of the array, x, renderItemFunction
+		//insert it into the cell
+
+
+
+
+
+
+}

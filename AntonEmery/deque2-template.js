@@ -4,13 +4,10 @@ var makeDeque =
 	(function () { //begin IIFE
 
 	function makeDeque(values) {
-		var closure = {
-			values: function() {
-				return values;
-				}
+		
 				
-		}
-		return closure;
+		
+		
 	// These vars are private, local to scope of makeDeque,
 	//  only accessible to functions defined in makeDeque:
 	var array = values.slice(); //copy values
@@ -51,7 +48,7 @@ var makeDeque =
 		return shift;
 	}
 
-	function unshfit() {
+	function unshift() {
 		var unshift = this.array.unshift(val);
 		return unshift;
 	}
@@ -90,6 +87,17 @@ var makeDeque =
 	return val + 2;
 	}
 
+	function render(container, renderItemFn) {
+			document.getElementById(container).innerHTML = '';
+
+			array.forEach(function(x) {
+					var cell = document.createElement('div')
+					cell.className = 'dequeItem';
+					renderItemFn(x, cell);
+					document.getElementById(container).appendChild(cell);
+			});
+		}
+
 	return { //one deque instance...
 			top : top,
 			bottom : bottom,
@@ -98,11 +106,14 @@ var makeDeque =
 			shift : shift,
 			unshift : unshift,
 			length : length,
+			render : render
 			
 
 			//etc
 	};
 
+
 } //end makeDeque
+return makeDeque;
 })(); //end IIFE
 // Part b): Turn this file into an IIFE module!
