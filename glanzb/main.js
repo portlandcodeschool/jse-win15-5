@@ -10,16 +10,17 @@ var deckOfPeople = makeDeque(people);
 
 
 function renderCardText(item,container) {
-	//draw item (as text) in container...
+	item.renderText(container);	//draw item (as text) in container...
 }
 
 function renderCardImage(item,container) {
-	//draw item (as image) in container...
+	item.renderImage(container);//draw item (as image) in container...
 }
 
 function renderStr(string,container) {
 	// You could write a new function here,
 	//  or somehow reuse renderCardText()
+	container.innerHTML += (string + ' ');
 }
 
 function drawStuff() {

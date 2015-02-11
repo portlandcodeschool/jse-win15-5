@@ -8,16 +8,21 @@ var makeCard = // receive factory with external name `makeCard`
         // set instance properties here
         //...
         // and return instance...
-        var card {
+        var card = {
             id: id,
             rank: rankFn,
             suit: suitFn,
             name: nameFn,
             color: colorFn,
-            // renderText:renderTextFn // renderText is the public name, fn is the internal
-            };
-        return card;
+            renderText: renderText, // renderText is the public name, fn is the internal
+            renderImage: renderImage
         };
+    return card;
+    };
+
+    // makeCard(9)
+    // makeCard(9).rank()
+    // makeCard(9).name()
 //--------------------------
 // Private resources (internal use only)
 //--------------------------
@@ -30,6 +35,7 @@ var makeCard = // receive factory with external name `makeCard`
                 && (num%1 === 0)        //integer
                 && num>=0 && num<=51;   //in range
     };
+
     //var rankNames = [...];
     var rankNames = ['','Ace','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten',
                         'Jack','Queen','King'];
@@ -64,15 +70,48 @@ var makeCard = // receive factory with external name `makeCard`
 
     //etc...
 
-    //problem 4.
-    // function renderText(cell){ // doesnt matter if there is anythin in there, just add to it
+    //problem 4., mainly copied Dan's solution
+    var fileName = function(card) { //internal use only
+        var rankVal = card.rank(),
+            rankName = (rankVal>1 && rankVal<11);
+            rankNames[rankVal].toLowerCase();
+            suitName = suitNames[card.suit()].toLowerCase();
+
+        // optional:
+        if (rankVal>10) //for Jacks,Queens,& Kings,
+            suitName+='2';//use alternate (face) image
+
+        return rankName+'_of_'+suitName+'.svg';
+    };
+
+    var renderText = function(container) {
+        if (typeof container === 'string') {
+            container = document.getElementById(container);
+        }
+        if (container instanceof HTMLElement) {
+            var myHtml = '<span class="'+this.color()+'">'
+                        + this.name() + '</span>';
+            container.innerHTML += myHtml;
+        }
+    };
+
+    var renderImage = function(container) {
+        if (typeof container === 'string') {
+            container = document.getElementById(container);
+        }
+        if (container instanceof HTMLElement) {
+            var myHtml = '<img class="cardImage" src="../images/SVG-cards-1.3/'
+                        + fileName(this) + '">';
+            container.innerHTML += myHtml;
+        }
+    }
+
+    // function renderText(cell){ // doesnt matter if there is anything in there, just add to it
     //     cell.innerHTML += this.name();
     // }
 
-    // function renderItemFn
-
-// var card0 = makeCard(0) -->> create a card, put it in the document
-//call it: card0.renderText(document.body)
+    // var card0 = makeCard(0) -->> create a card, put it in the document
+    //call it: card0.renderText(document.body)
 
 //-----------------------
 // Factory Methods/Data:

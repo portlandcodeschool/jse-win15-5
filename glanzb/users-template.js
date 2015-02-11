@@ -46,31 +46,29 @@ if (typeof module != 'undefined')
 // or iffe
 
 var makeUser = (function() {// begin IIFE... get rid of the name and call it right away, so you dont have to call it befor making individuals
-// makeUser saves the name, captures what comes out of the factory
-// otherwise the iffe would be ran once and thrown away right away
 	var sharedLog = [];  //private; accessible only from functions defined within IIFE
 	//outside of factory, because shared, should not be reset every time the factory is run
 
 	function record(msg){
-		sharedLog+= this.getName() + " : " + msg + "\n";	// cant be name, has to be accesssed with the getname function
+		sharedLog+= this.getName() + " : " + msg + "\n";	// cant be name, has to be accessed with the getname function
 	}
 
 	// The factory itself:
-		function makeUser(name,passwd) {
-			var user = {
-				// name: name, --> security problem, can be set like this
-				getName: function(){
-					return name;
-				},
-				validate: function(guess){
-		        return (guess === passwd); // boolean
-				},
-				record: record	// made it a shared function
-				// record: function(msg){
-				// 	sharedLog += name + " : " + msg; // add the (local)message string to the name string in the log
-				// }
+	function makeUser(name,passwd) {
+		var user = {
+			// name: name, --> security problem, can be set like this
+			getName: function(){
+				return name;
+			},
+			validate: function(guess){
+	        	return (guess === passwd); // boolean
+			},
+			record: record	// made it a shared function
+			// record: function(msg){
+			// 	sharedLog += name + " : " + msg; // add the (local)message string to the name string in the log
+			// }
 			};
-			return user; 
+		return user; 
 		}
 
 	makeUser.getlog = function(){	// has to be a method of the factory
@@ -82,7 +80,7 @@ var makeUser = (function() {// begin IIFE... get rid of the name and call it rig
 
 var anton = makeUser("Anton","sekrit");
 anton.validate("wrong");	// returns false
-anton.record ("1/4 through the class")
+anton.record ("1/4 through the class");		//makeUser.getlog();
 
 
 // dan"s solution
