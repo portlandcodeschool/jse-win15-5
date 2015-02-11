@@ -1,4 +1,89 @@
-//sunday february 8 notes
+//1
+var makeCard = (function() {
+
+		function makeCard(id) {
+	    // If id is invalid (out of range, etc)
+	    if (!makeCard.isValidID(id)) // abort if id is invalid
+	       return null;
+
+	    return {id:id,
+	            rank : makeCard.rank,
+	            suit : makeCard.suit,
+	            color: makeCard.color,
+	            name : makeCard.cardName
+	    }
+	}
+
+	//-----------------------
+// Instance Methods:
+//-----------------------
+
+	makeCard.rank = function() { // --> 1..13, NaN
+	    return Math.floor(this.id/4) + 1;
+	};
+
+	makeCard.suit = function() { // --> 1..4, NaN
+	    return (this.id % 4) + 1;
+	};
+	   
+	makeCard.color = function() { // -->"red,"black",NaN
+	    var suit=this.suit();
+	    return suit && ((suit<3)? "red": "black");
+	};
+
+	makeCard.rankNames = ['','Ace','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten',
+	                        'Jack','Queen','King'];
+	makeCard.suitNames = ['','Hearts','Diamonds','Spades','Clubs'];
+
+	makeCard.cardName = function() { //--> string, NaN
+	    // This method can't have the key 'name' within the makeCard function,
+	    // but instance objects can store a reference to it called 'name'
+	    var rank = this.rank();
+	    var suit = this.suit();
+	    return rank && suit && (makeCard.rankNames[rank]+' of '+makeCard.suitNames[suit]);
+	};
+
+
+	//-----------------------
+// Factory Methods/Data:
+//-----------------------
+
+	makeCard.isValidID = function(num) { // Returns--> true, false
+	        return ((typeof num)==="number") //correct type
+	                && (num%1 === 0)        //integer
+	                && num>=0 && num<=51;   //in range
+	}
+
+	makeCard.isCard = function(thing) { // --> true,false
+	    // return true if thing is a valid card instance made by this factory
+	    return thing
+	            && (typeof thing === 'object') // check for null or primitive
+	            && (thing.name === makeCard.cardName) // check at least one method
+	            && ('id' in thing) && makeCard.isValidID(thing.id); //check id
+	}
+
+	//---------------------
+	// Additional factory properties
+	//---------------------
+
+	makeCard.fullSet = [];
+	for (var id=0; id<52; ++id) {
+	    makeCard.fullSet.push(makeCard(id));
+	}
+
+	return makeCard;
+})();
+
+// Export as node-style module:
+// if (typeof module != 'undefined')
+//     module.exports = makeCard;
+
+var card1 = makeCard(34);
+
+
+
+
+
 //3a
 
 function makeUser(name,passwd) {
@@ -75,81 +160,42 @@ function factoryMaker(){
 }
 
 
+
+var makeUser = (function () { 
+	var sysLog = '';
+
+	function record(msg) {
+				sysLog += this.getName() + ' : ' + msg + '\n'
+		},
+	
+	function factory(name, pwd) {
+
+		var user = {
+			getName:function() {
+				return name;
+			},
+
+			validate: function(guess) {
+				return (guess === pwd);
+			},
+
+			record: record; 
+		}
+
+		return user;
+	};
+	makeUser.getLog = function() { 
+		return sysLog;
+	}
+
+	return makeUser;
+
+})();
+
+function setUserName(userobj) {
+		userobj.setName('Georgie')
+
+	}
+
+
 //4
-
-var makeCard = // receive factory with external name `makeCard`
-    (function () { //begin IIFE...
-
-    // The factory itself:
-    function makeCard(id) {  //makeCard is also IIFE's internal name
-        // set instance properties here
-        //...
-        // and return instance...
-        return {
-        	ranK: rank,
-        	suit: suit,
-        	name: name,
-        	color: color,
-        	renderText: renderText
-        }
-    };
-
-
-//--------------------------
-// Private resources (internal use only)
-//--------------------------
-
-    // Examples:
-
-    //function isValidID(num) {...}
-    //var rankNames = [...];
-
-    var ranks : ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"],
-suites : ["Hearts", "Diamonds", "Spades", "Clubs"];
-
-//-----------------------
-// Instance Methods:
-//-----------------------
-
-    function rank() {
-    }
-
-    function suit() {
-    }
-    function name(){
-
-    }
-    function color(){
-    }
-
-    //etc...
-    function renderText(cell){
-    	cell.innerHTML += this.name();
-    }
-
-
-//-----------------------
-// Factory Methods/Data:
-//-----------------------
-
-
-
-    makeCard.isCard = function(thing) {
-
-
-    };
-
-    makeCard.fullSet = [];//<-- fill me
-
-
-
-    return makeCard;  //return factory function, product of IIFE's work
-
-})(); //end IIFE definition and run it now!
-
-// Export as node-style module:
-if (typeof module != 'undefined')
-    module.exports = makeCard;
-
-
-
