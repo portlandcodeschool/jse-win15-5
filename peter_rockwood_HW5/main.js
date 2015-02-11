@@ -1,6 +1,6 @@
 /////5.1 console logs/////
 var One = makeCard(1);
-console.log('5.1) \n', 'Name: ' + One.cardName(), 'color: ' + One.color(),  'IsCard(One): '+makeCard.isCard(One))
+console.log('5.1) \n', 'Name: ' + One.cardName(), 'color: ' + One.color(),  'IsCard(One): '+ makeCard.isCard(One))
 
 /////5.2 console logs/////
 var deckOfCards = makeDeque(makeCard.fullSet);
