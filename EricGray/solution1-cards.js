@@ -205,6 +205,16 @@ function makeDeque(values) {
     return tail.length;  //returns # elements moved from upper half to lower (0 if no change)
     }
 
+    function render(container, renderItemFN){
+        container.innerHTML = '';
+        for (i = 0; i < array.length; i++){
+        var newCell = document.createElement('div');
+        newCell.className = 'dequeItem';
+        renderItemFN(array[i], newCell);
+        container.appendChild(newCell);}
+
+}
+
     function shuffle(){
     // Knuth-Fisher-Yates, modified from http://bost.ocks.org/mike/shuffle/
     var end = array.length, temp, i;
@@ -240,6 +250,7 @@ function makeDeque(values) {
             map: cut,
             shuffle: shuffle,
             readmit: readmit,
+            render: render,
             //etc
     };
 }
@@ -294,6 +305,7 @@ var makeUser = (function() {// begin IIFE...
     //better than indexOf -- though maybe that will work?
     
            makeUser.getLog = function(user) {
+ /*Herein lies my attempt
             var userLog = [];
     if (!user) {
         return function(){
@@ -307,23 +319,43 @@ var makeUser = (function() {// begin IIFE...
                 return userLog;
             //
         }
-    }()
+*/
+//And here is how it should have probably looked
+    if (!user)
+        return sharedLog.join('\n');
+    if (typeof user === 'object')
+        user = user.getName();
+
+    function matchesUser(line) {
+        var halves = line.split(':');
+        return halves[0] === user;
+    }
+    var userLines = sharedLog.filter/*???*/(matchesUser);
+    return userLines.join('\n')
+
+    }
+
 
     return makeUser;
 })();
 
+
 var maxwell = makeUser("edge", "generic");
-maxwell.getName();
-maxwell.validate("burgers");
-maxwell.validate("generic");
+console.log(maxwell.getName());
+console.log(maxwell.validate("burgers"));
+console.log(maxwell.validate("generic"));
 var kittens = makeUser("cleo", "hollywood");
-kittens.getName();
-kittens.validate("hollywood");
+console.log(kittens.getName());
+console.log(kittens.validate("hollywood"));
 maxwell.getName();
-maxwell.record("Mayday");
-kittens.record("oh come on");
-maxwell.record("failed this");
-kittens.record("just once more")   
+maxwell.record("It was a nice day");
+kittens.record("but we stayed inside");
+maxwell.record("I bought a boat!");
+kittens.record("but we broke it");
+
+console.log(console.log(makeUser.getLog()));
+console.log(makeUser.getLog('edge'));
+console.log(makeUser.getLog('cleo'));   
 
 if (typeof module != 'undefined')
     module.exports = makeUser;
@@ -338,4 +370,6 @@ function bark(fido){
 
 
 //Question 4 - Showing off the Deque
+
+//answers above
 
