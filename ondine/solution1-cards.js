@@ -78,7 +78,7 @@ var makeCard = (function () { //begin IIFE...
     
     function renderImageFn(cell) {
         var img = document.createElement('img');
-        img.innerHTML = '<img src = \"images/SVG-cards-1.3/ace_of_spades.svg\">';
+        img.src = 'images/SVG-cards-1.3/+ace_of_spades+.svg';
         cell.appendChild(img);
         img.className = 'cardImage';
     }
