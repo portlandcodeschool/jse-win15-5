@@ -1,6 +1,6 @@
 
 var deckOfCards = makeDeque(makeCard.fullSet);
-deckOfCards.shuffle();//keeps it interesting
+<!--deckOfCards.shuffle();//keeps it interesting-->
 
 var people = [
 	'Anton','Brigitta','Danniel','Eric','Greg','Ian',
@@ -22,7 +22,7 @@ function renderStr(string,container) {
 	//  or somehow reuse renderCardText()
 }
 
-function drawStuff() {
+/*function drawStuff() {
 	deckOfCards.render('card-names', renderCardText);
 	deckOfCards.render('card-images', renderCardImage);
 	deckOfPeople.render('people-names', renderName);
@@ -31,3 +31,14 @@ function drawStuff() {
 
 //wait until everything is loaded before rendering:
 window.onload = drawStuff;
+*/
+
+
+card15 = makeCard(14);
+console.log(card15.rank());
+console.log(card15.suit());
+console.log(card15.color());
+console.log(card15.cardName());
+
+var testResults = makeDeque(makeCard.fullSet)
+console.log("length " + testResults.length())
