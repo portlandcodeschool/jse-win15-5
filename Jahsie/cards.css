@@ -1,0 +1,66 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900);
+
+body {
+	background-color: grey;
+	font-family: 'Source Sans Pro', sans-serif;
+	background-image: url('images/background.jpg');
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 50px;
+	font-weight: 900;
+}
+
+p {
+	text-align: center;
+}
+
+#card-table {
+	background-color: rgba(255, 255, 255, .6);
+	margin: 5%;
+	padding: 5%;
+	overflow: scroll;
+}
+
+#card-names, #card-images, #people-names  {
+	margin: 0 auto;
+}
+
+.red {
+
+	color: red;
+	font-weight: 300;
+	font-size: 18px;
+}
+
+.black {
+	color: black;
+	font-weight: 400;
+	font-size: 18px;
+}
+
+.cardImage {
+
+	/* more style props here */
+}
+
+img {
+	width: 100px;
+	margin: 0 25px;
+}
+
+.name {
+	display: inline-block;
+	width: 150px;
+	margin: 0px 10px;
+}
+
+.card {
+	padding: 10px;
+	display: inline-block;
+	width: 150px;
+	margin: 0 auto;
+}
